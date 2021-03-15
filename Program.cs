@@ -48,34 +48,34 @@ namespace demoMassData
 
 
             //Console.WriteLine(dataTable.Rows.Count);
-            //DataTable dataTable = mySqlBulkLoaderHelper.fileToDataTable(path);
+            DataTable dataTable = mySqlBulkLoaderHelper.fileToDataTable(path);
             DateTime beforeDT = System.DateTime.Now;
-            //int count=mySqlBulkLoaderHelper.BulkInsert(connectionString, dataTable);
+            int count=mySqlBulkLoaderHelper.BulkInsert(connectionString, dataTable);
 
-            using (MySqlConnection conn = new MySqlConnection(connectionString))
-            {
-                try
-                {
-                    conn.Open();
-                    //conn.Execute("update test1 set type='.png' where type='.jpg';");
-                    int count =conn.Execute("delete from test1 where type='.jpg1';");
-                    //int count=conn.Execute("update test1 set type='.png' where id in (select id from (select * from test1 order by id asc limit 0,30000) as tt) ;");
-                    //conn.Execute("update test1 set type=case type where '.jpg'")
-                    //int count = conn.Execute("update test1 set type= case type when '.png' then '.png2' when '.png1' then '.png3' when '.jpg' then '.jpg1' end where id!=0");
+            //using (MySqlConnection conn = new MySqlConnection(connectionString))
+            //{
+            //    try
+            //    {
+            //        conn.Open();
+            //        //conn.Execute("update test1 set type='.png' where type='.jpg';");
+            //        int count =conn.Execute("delete from test1 where type='.jpg1';");
+            //        //int count=conn.Execute("update test1 set type='.png' where id in (select id from (select * from test1 order by id asc limit 0,30000) as tt) ;");
+            //        //conn.Execute("update test1 set type=case type where '.jpg'")
+            //        //int count = conn.Execute("update test1 set type= case type when '.png' then '.png2' when '.png1' then '.png3' when '.jpg' then '.jpg1' end where id!=0");
 
-                    conn.Close();
-                    Console.WriteLine("数据量为：" + count + "/n");
-
-
-                }
-                catch (MySqlException ex)
-                {
-                    throw ex;
-                }
-            }
+            //        conn.Close();
+            //        Console.WriteLine("数据量为：" + count + "/n");
 
 
+            //    }
+            //    catch (MySqlException ex)
+            //    {
+            //        throw ex;
+            //    }
+            //}
 
+
+            Console.WriteLine("数据量为：" + count + "/n");
             DateTime afterDT = System.DateTime.Now;
             TimeSpan ts = afterDT.Subtract(beforeDT);
 

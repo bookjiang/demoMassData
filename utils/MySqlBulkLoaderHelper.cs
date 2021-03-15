@@ -22,15 +22,18 @@ namespace demoMassData.utils
             DataColumn dataColumn1 = new DataColumn("fileName", typeof(string));
             DataColumn dataColumn2 = new DataColumn("type", typeof(string));
             DataColumn dataColumn3 = new DataColumn("length", typeof(int));
+            DataColumn dataColumn4 = new DataColumn("ceateTime", typeof(DateTime));
             dataTable.Columns.Add(dataColumn1);
             dataTable.Columns.Add(dataColumn2);
             dataTable.Columns.Add(dataColumn3);
+            dataTable.Columns.Add(dataColumn4);
             DirectoryInfo direcInfo = new DirectoryInfo(filePath);
             if (direcInfo != null && direcInfo.Exists)
             {
                 foreach (var item in direcInfo.GetFiles())
                 {
-                    dataTable.Rows.Add(item.Name, item.Extension, item.Length);
+
+                    dataTable.Rows.Add(item.Name, item.Extension, item.Length, System.DateTime.Now);
                     //Console.WriteLine(item.FullName+item.Name+item.Extension+item.Length);
                    
 
@@ -128,8 +131,9 @@ namespace demoMassData.utils
                 catch (MySqlException ex)
                 {
                     // if (tran != null) tran.Rollback();
-                    File.Delete(tmpPath);
                     conn.Close();
+                    File.Delete(tmpPath);
+
                     throw ex;
                 }
             }
